@@ -6,13 +6,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <title>Sea Creatures</title>
     <style>
+        * {
+            font-family: "Nunito", sans-serif;
+        }
         .brand {
-            background: #cbb09c !important;
+            background: #d19568 !important;
         }
 
-        .brand-text {
-            color: #cbb09c !important;
-
+            .brand-text {
+            color: #d19568 !important;
+        }
+        form {
+            max-width: 460px;
+            margin: 20px auto;
+            padding: 20px;
         }
     </style>
 </head>
