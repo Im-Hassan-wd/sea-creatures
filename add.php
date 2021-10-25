@@ -1,10 +1,35 @@
 <?php
 
     if(isset($_POST['submit'])){
-        echo $_POST['email'];
-        echo $_POST['name'];
-        echo $_POST['occupation'];
-    }
+
+        //check email
+        if(empty($_POST['email'])) {
+            echo 'An email is required <br/>';
+        } else {
+           $email = $_POST['email']; 
+           if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+               echo 'email must be valid email address';
+           }
+        }
+        //check name
+        if(empty($_POST['name'])) {
+            echo 'An name is required <br/>';
+        } else {
+           $name = $_POST['name'];
+           if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
+               echo 'name must be letters and spaces only';
+            } 
+        }
+        //check occupatio
+        if(empty($_POST['occupation'])) {
+            echo 'An occupation is required <br/>';
+        } else {
+           $occupation = $_POST['occupation'];
+           if(!preg_match('/^([a-zA-Z\s]+)/', $occupation)){
+               echo 'occupation must be letters and spaces only';
+            }  
+        }
+    } // end of post check
 
 ?>
 
