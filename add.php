@@ -3,11 +3,12 @@
     $errors = array('email'=>'', 'name'=>'', 'occupation'=>'');
     // setting empty variables
     $name = $email = $occupation = '';
+
     if(isset($_POST['submit'])){
 
         //check email
         if(empty($_POST['email'])) {
-            $errors['email'] = 'An email is required <br/>';
+            $errors['email'] = 'An email is required';
         } else {
            $email = $_POST['email']; 
            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -16,7 +17,7 @@
         }
         //check name
         if(empty($_POST['name'])) {
-            $errors['name'] = 'An name is required <br/>';
+            $errors['name'] = 'An name is required';
         } else {
            $name = $_POST['name'];
            if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
@@ -25,12 +26,19 @@
         }
         //check occupatio
         if(empty($_POST['occupation'])) {
-            $errors['occupation'] = 'An occupation is required <br/>';
+            $errors['occupation'] = 'An occupation is required';
         } else {
            $occupation = $_POST['occupation'];
            if(!preg_match('/^[a-zA-Z\s]+$/', $occupation)){
                $errors['occupation'] = 'occupation must be letters and spaces only';
             }  
+        }
+
+        if(array_filter($errors)){
+            // echo 'errors in the form';
+        } else {
+            // echo 'form is valid';
+            header('location: index.php');
         }
     } // end of post check
 
