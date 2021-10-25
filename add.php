@@ -1,32 +1,35 @@
 <?php
-
+     
+    $errors = array('email'=>'', 'name'=>'', 'occupation'=>'');
+    // setting empty variables
+    $name = $email = $occupation = '';
     if(isset($_POST['submit'])){
 
         //check email
         if(empty($_POST['email'])) {
-            echo 'An email is required <br/>';
+            $errors['email'] = 'An email is required <br/>';
         } else {
            $email = $_POST['email']; 
            if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-               echo 'email must be valid email address';
+               $errors['email'] = 'email must be valid email address';
            }
         }
         //check name
         if(empty($_POST['name'])) {
-            echo 'An name is required <br/>';
+            $errors['name'] = 'An name is required <br/>';
         } else {
            $name = $_POST['name'];
            if(!preg_match('/^[a-zA-Z\s]+$/', $name)){
-               echo 'name must be letters and spaces only';
+               $errors['name'] = 'name must be letters and spaces only';
             } 
         }
         //check occupatio
         if(empty($_POST['occupation'])) {
-            echo 'An occupation is required <br/>';
+            $errors['occupation'] = 'An occupation is required <br/>';
         } else {
            $occupation = $_POST['occupation'];
-           if(!preg_match('/^([a-zA-Z\s]+)/', $occupation)){
-               echo 'occupation must be letters and spaces only';
+           if(!preg_match('/^[a-zA-Z\s]+$/', $occupation)){
+               $errors['occupation'] = 'occupation must be letters and spaces only';
             }  
         }
     } // end of post check
@@ -42,11 +45,14 @@
         <h4 class="center">Add a Creature</h4>
         <form action="add.php" method="POST" class="white">
             <label for="">Your Email:</label>
-            <input type="text" name="email">
+            <div class="red-text"><?php echo htmlspecialchars($errors['email']) ?></div>
+            <input type="text" name="email" value="<?php echo $email?>">
             <label for="">Creature Name:</label>
-            <input type="text" name="name">
+            <div class="red-text"><?php echo htmlspecialchars($errors['name']) ?></div>
+            <input type="text" name="name" value="<?php echo $name?>">
             <label for="">Occupation:</label>
-            <input type="text" name="occupation">
+            <div class="red-text"><?php echo htmlspecialchars($errors['occupation']) ?></div>
+            <input type="text" name="occupation" value="<?php echo $occupation?>">
             <div class="center">
                 <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
             </div>
