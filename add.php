@@ -1,8 +1,8 @@
 <?php
      
-    $errors = array('email'=>'', 'name'=>'', 'occupation'=>'');
+    $errors = array('email'=>'', 'name'=>'', 'occupation'=>'', 'bio'=> '');
     // setting empty variables
-    $name = $email = $occupation = '';
+    $name = $email = $occupation = $bio = '';
 
     if(isset($_POST['submit'])){
 
@@ -24,13 +24,24 @@
                $errors['name'] = 'name must be letters and spaces only';
             } 
         }
-        //check occupatio
+        
+        //check occupation
         if(empty($_POST['occupation'])) {
             $errors['occupation'] = 'An occupation is required';
         } else {
            $occupation = $_POST['occupation'];
            if(!preg_match('/^[a-zA-Z\s]+$/', $occupation)){
                $errors['occupation'] = 'occupation must be letters and spaces only';
+            }  
+        }
+
+        //check biography
+        if(empty($_POST['bio'])) {
+            $errors['bio'] = 'An bio is required';
+        } else {
+           $bio = $_POST['bio'];
+           if(!preg_match('/^[a-zA-Z\s]+$/', $bio)){
+               $errors['bio'] = 'bio must be letters and spaces only';
             }  
         }
 
@@ -61,6 +72,9 @@
             <label for="">Occupation:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['occupation']) ?></div>
             <input type="text" name="occupation" value="<?php echo $occupation?>">
+            <label for="">Biography:</label>
+            <div class="red-text"><?php echo htmlspecialchars($errors['bio']) ?></div>
+            <input type="text" name="bio" value="<?php echo $bio?>">
             <div class="center">
                 <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
             </div>
