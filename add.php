@@ -49,9 +49,17 @@
         if(empty($_POST['avatar'])) {
             $errors['avatar'] = 'An avatar is required';
         } else {
-           $avatar = $_POST['avatar'];
-            $fileName = basename($_POST['avatar']);//["name"]); 
+           $avatar = $_POST["avatar"];
+            $fileName = basename($_POST["avatar"]); 
             $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+            //checking image types
+            $allowTypes = array('jpg','png','jpeg','gif'); 
+            if(in_array($fileType, $allowTypes)){ 
+                $image = $_POST['avatar']; 
+                $imgContent = addslashes(file_get_contents($image)); 
+            }else{ 
+                $statusMsg = 'Sorry, only JPG, JPEG, PNG, & GIF files are allowed to upload.'; 
+            } 
         }
 
         if(array_filter($errors)){
