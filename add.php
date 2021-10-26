@@ -1,6 +1,6 @@
 <?php
      
-    $errors = array('email'=>'', 'name'=>'', 'occupation'=>'', 'bio'=> '');
+    $errors = array('email'=>'', 'name'=>'', 'occupation'=>'', 'bio'=> '', 'avatar'=>'');
     // setting empty variables
     $name = $email = $occupation = $bio = '';
 
@@ -45,6 +45,15 @@
             }  
         }
 
+        //check image
+        if(empty($_POST['avatar'])) {
+            $errors['avatar'] = 'An avatar is required';
+        } else {
+           $avatar = $_POST['avatar'];
+            $fileName = basename($_POST['avatar']);//["name"]); 
+            $fileType = pathinfo($fileName, PATHINFO_EXTENSION); 
+        }
+
         if(array_filter($errors)){
             // echo 'errors in the form';
         } else {
@@ -75,6 +84,9 @@
             <label for="">Biography:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['bio']) ?></div>
             <input type="text" name="bio" value="<?php echo $bio?>">
+            <label for="">Image:</label>
+            <div class="red-text"><?php echo htmlspecialchars($errors['avatar']) ?></div>
+            <input type="file" name="avatar" value="<?php echo $avatar?>">
             <div class="center">
                 <input type="submit" value="submit" name="submit" class="btn brand z-depth-0">
             </div>

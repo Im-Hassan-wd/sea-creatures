@@ -19,6 +19,11 @@
 
     print_r($creature);
 
+    // free result from memory
+    mysqli_free_result($data);
+    //close connection
+    mysqli_close($connect);
+
 
 ?>
 
