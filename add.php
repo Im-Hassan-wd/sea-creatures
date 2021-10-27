@@ -1,4 +1,6 @@
 <?php
+
+    include('config/db_connect.php');
      
     $errors = array('email'=>'', 'name'=>'', 'occupation'=>'', 'bio'=> '', 'avatar'=>'');
     // setting empty variables
@@ -40,9 +42,9 @@
             $errors['bio'] = 'An bio is required';
         } else {
            $bio = $_POST['bio'];
-           if(!preg_match('/^[a-zA-Z\s]+$/', $bio)){
-               $errors['bio'] = 'bio must be letters and spaces only';
-            }  
+        //    if(!preg_match('/^[a-zA-Z\s]+$/', $bio)){
+        //        $errors['bio'] = 'bio must be letters and spaces only';
+        //     }  
         }
 
         //check image
@@ -65,8 +67,21 @@
         if(array_filter($errors)){
             // echo 'errors in the form';
         } else {
-            // echo 'form is valid';
-            header('location: index.php');
+            $email = mysqli_real_escape_string($connect, $_POST['email']);
+            $name = mysqli_real_escape_string($connect, $_POST['name']);
+            $occupation = mysqli_real_escape_string($connect, $_POST['occupation']);
+            $bio = mysqli_real_escape_string($connect, $_POST['bio']);
+            // $avatar = mysqli_real_escape_string($connect, $POST['avatar']);
+
+            //create sql
+            $sql = "INSERT INTO creatures(email,name,occupation,bio,avatar) VALUES('$email', '$name', '$occupation', '$bio', '$avatar')";
+
+            //save to database and check
+            if(mysqli_query($connect, $sql)){
+                header('location: index.php');
+            } else {
+                echo 'query erro' . mysqli_error($connect);
+            }
         }
     } // end of post check
 

@@ -1,15 +1,9 @@
 <?php
 
-    //connect to database
-    $connect = mysqli_connect('localhost', 'weird', 'test1234', 'sea_creature');
-
-    //check connection
-    if(!$connect){
-        echo 'Connection error:'. mysqli_connect_error();
-    }
-
+    include('config/db_connect.php');
+    
     // queries to get all creatures
-    $sql = 'SELECT name, bio, id, occupation FROM creatures ORDER BY created_at';
+    $sql = 'SELECT name, avatar, bio, id, occupation FROM creatures ORDER BY created_at';
 
     // gettting query result
     $data = mysqli_query($connect, $sql);
@@ -21,6 +15,8 @@
     mysqli_free_result($data);
     //close connection
     mysqli_close($connect);
+
+    print_r($creatures);
 
 
 ?>
@@ -38,6 +34,7 @@
                 <div class="col s6 md3">
                     <div class="card z-depth-0">
                         <div class="card-content center">
+                            <img src="images/<?php echo $creature['avatar'] ?>" alt="<?php echo htmlspecialchars($creature['name']); ?>">
                             <h5><?php echo htmlspecialchars($creature['name']); ?></h5>
                             <div><?php echo htmlspecialchars($creature['bio']); ?></div>
                         </div>

@@ -21,6 +21,10 @@
             margin: 30px auto;
             padding: 20px;
         }
+
+        img {
+            width: 100%;
+        }
     </style>
 </head>
     <body class="grey lighten-4">
