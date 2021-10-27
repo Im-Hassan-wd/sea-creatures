@@ -29,7 +29,7 @@
     <div class="container">
         <div class="row">
             <?php foreach($creatures as $creature) { ?>
-                <div class="col s3 md6">
+                <div class="col s6 md3">
                     <div class="card z-depth-0">
                         <div class="card-content center">
                             <img src="images/<?php echo $creature['avatar'] ?>" alt="<?php echo htmlspecialchars($creature['name']); ?>">
