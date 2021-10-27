@@ -97,16 +97,16 @@
         <form action="add.php" method="POST" class="white">
             <label for="">Your Email:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['email']) ?></div>
-            <input type="text" name="email" value="<?php echo $email?>">
+            <input type="text" name="email" value="<?php echo $email?>" autocomplete="off">
             <label for="">Creature Name:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['name']) ?></div>
-            <input type="text" name="name" value="<?php echo $name?>">
+            <input type="text" name="name" value="<?php echo $name?>" autocomplete="off">
             <label for="">Occupation:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['occupation']) ?></div>
-            <input type="text" name="occupation" value="<?php echo $occupation?>">
+            <input type="text" name="occupation" value="<?php echo $occupation?>" autocomplete="off">
             <label for="">Biography:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['bio']) ?></div>
-            <input type="text" name="bio" value="<?php echo $bio?>">
+            <input type="text" name="bio" value="<?php echo $bio?>" autocomplete="off">
             <label for="">Image:</label>
             <div class="red-text"><?php echo htmlspecialchars($errors['avatar']) ?></div>
             <input type="file" name="avatar" value="<?php echo $avatar?>">
