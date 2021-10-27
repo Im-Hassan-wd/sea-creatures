@@ -34,7 +34,12 @@
             <h5>Biography</h5>
             <h6><?php echo htmlspecialchars($creature['bio']); ?></h6>
         <?php } else { ?>
-            <h5>error 404</h5>
+            <header>
+                <h3>Eror 404</h3>
+            </header>
+                <h5>No such creature!</h5>
+                <a href="index.php" class="btn brand z-depth-0">go home</a>
+                <img src="images/16.svg" alt="">
         <?php }?>
     </div>
 
