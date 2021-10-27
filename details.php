@@ -1,6 +1,18 @@
 <?php 
 
     include('config/db_connect.php');
+
+    if(isset($_POST['delete'])) {
+      $id_to_delete = mysqli_real_escape_string($connect, $_POST['id_to_delete']);
+
+      $sql = "DELETE FROM creatures WHERE id = $id_to_delete";
+
+      if(mysqli_query($connect, $sql)){
+          header('Location: index.php');
+      } else {
+          echo 'query error:' . mysqli_error($connect);
+      }
+    }
     // check GET request id parameter
     if(isset($_GET['id'])) {
 
@@ -33,6 +45,14 @@
             <p>Created at:<?php echo date($creature['created_at']); ?></p>
             <h5>Biography</h5>
             <h6><?php echo htmlspecialchars($creature['bio']); ?></h6>
+
+            <!-- Delete creature -->
+            <form action="details.php" method="POST">
+               <input type="hidden" name="id_to_delete" value="<?php echo $creature['id'] ?>">  
+               <input type="submit" value="Delete" name="delete" class="btn brand z-depth-0">
+            </form>
+
+
         <?php } else { ?>
             <header>
                 <h3>Eror 404</h3>
